@@ -5,7 +5,7 @@ export default defineConfig({
     '@umijs/plugins/dist/model',
     '@umijs/plugins/dist/antd'
   ],
-  base: '/workspace',
+  base: '/MyWorkspace',
   model: {},
   antd: {},
   routes: [
