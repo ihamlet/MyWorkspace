@@ -14,9 +14,11 @@ const useTask = (): UseTask => {
   const [createForm, setCreateForm] = useState<any>()
   const [isOpen, setModelOpen] = useState<Boolean>(false)
   const [taskList, { set, setAll, remove }] = useMap<string | number, Task | any>([])
+  const [time, setTime] = useState<string>(String(Date.now()))
 
   // 拿到当天数据，可根据日历进行筛选
   const getCurrentDayTaskList = (taskList: any, selectDay: string = currentDay) => {
+    setTime(String(dayjs(selectDay).valueOf()))
     return taskList.filter((item: any) => {
       const [createTime] = item
       const dateStr = dayjs(Number(createTime)).format('YYYY-MM-DD')
@@ -65,8 +67,8 @@ const useTask = (): UseTask => {
   const confirm = async () => {
     const formData:Task = await createForm.validateFields()
     if (formData) {
-      set(String(Date.now()), formData)
-      ymap.set(String(Date.now()), formData)
+      set(time, formData)
+      ymap.set(time, formData)
       setModelOpen(false)
     }
   }
