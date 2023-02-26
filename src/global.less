@@ -1,7 +1,10 @@
+@import 'remixicon/fonts/remixicon.css';
+
 body{
   padding: 0;
   margin: 0;
 }
+
 
 .my-layout {
   min-height: 100vh;
@@ -12,6 +15,12 @@ body{
     background: rgba(255, 255, 255, .72);
     z-index: 99;
     backdrop-filter: blur(6px);
+  }
+}
+
+[theme=drak] {
+  .my-layout-header{
+    background: rgba(48, 48, 48, .72);
   }
 }
 
@@ -31,3 +40,4 @@ body{
   left: 50%;
   transform: translateX(-50%);
 }
+

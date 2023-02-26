@@ -51,7 +51,7 @@ const DayTask = () => {
     })
   }
 
-  const onSegmentedChange = (value: 'Normal' | 'Important' | 'Urgent') => {
+  const onSegmentedChange = (value: LevelType) => {
     setList(groupList(value))
     setTaskState(value)
   }
