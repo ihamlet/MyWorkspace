@@ -28,10 +28,10 @@ const useConfig = (): UseConfig => {
     }
   }, [newTime])
 
-  const changeTheme = (isDark: Boolean = isDarkTheme) => {
-    setThemeConfig({ algorithm: [isDark ? darkAlgorithm : defaultAlgorithm], token })
-    bodyDom?.setAttribute('theme', isDark ? 'drak' : 'default')
-    setTheme(isDark ? false : true)
+  const changeTheme = () => {
+    setThemeConfig({ algorithm: [isDarkTheme ? darkAlgorithm : defaultAlgorithm], token })
+    bodyDom?.setAttribute('theme', isDarkTheme ? 'drak' : 'default')
+    setTheme(isDarkTheme ? false : true)
   }
 
   return {
