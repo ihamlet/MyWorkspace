@@ -45,6 +45,7 @@ type UseTask = {
 }
 
 type UseConfig = {
+  isDarkTheme: Boolean
   changeTheme: Function
   themeConfig: object
   zhCN: any

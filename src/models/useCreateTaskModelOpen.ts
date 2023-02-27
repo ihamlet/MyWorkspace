@@ -15,7 +15,7 @@ const useTask = (): UseTask => {
   const [isOpen, setModelOpen] = useState<Boolean>(false)
   const [taskList, { set, setAll, remove }] = useMap<string | number, Task | any>([])
   const [time, setTime] = useState<string>(String(Date.now()))
-
+  
   // 拿到当天数据，可根据日历进行筛选
   const getCurrentDayTaskList = (taskList: any, selectDay: string = currentDay) => {
     setTime(String(dayjs(selectDay).valueOf()))
@@ -73,7 +73,11 @@ const useTask = (): UseTask => {
     }
   }
 
+  // 日期选择
   const getSetSelectDayTaskList = (daystr: string) => setAll(getCurrentDayTaskList(getIndexddbDataList(), daystr))
+
+  // 统计
+  
 
   return {
     getIndexddbDataList,

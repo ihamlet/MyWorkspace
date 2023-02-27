@@ -1,15 +1,8 @@
-import { useState } from 'react'
 import { useModel } from 'umi'
 import { Button, Row, Col } from 'antd'
 
 const HeaderBar = () => {
-  const [isDark, setTheme] = useState<Boolean>(false)
-  const { changeTheme } = useModel<any>('useLayoutsConfig') as any
-  const toggleTheme = () => {
-    setTheme(isDark ? false : true)
-    changeTheme(isDark)
-  }
-
+  const { isDarkTheme, changeTheme } = useModel<any>('useLayoutsConfig') as any
   return (
     <Row justify={'space-between'}>
       <Col>
@@ -18,8 +11,8 @@ const HeaderBar = () => {
       <Col>
         <div className='action'>
           <Button type='text'
-            icon={<i className={isDark ? 'ri-contrast-2-line' : 'ri-sun-line'} />}
-            onClick={() => toggleTheme()}
+            icon={<i className={isDarkTheme ? 'ri-contrast-2-line' : 'ri-sun-line'} />}
+            onClick={() => changeTheme()}
           />
         </div>
       </Col>
