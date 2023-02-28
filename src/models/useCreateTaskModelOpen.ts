@@ -27,7 +27,7 @@ const useTask = (): UseTask => {
   }
 
   // 获取indexDB数据
-  const getIndexddbDataList = () => {
+  const getIndexddbDataList = ():any[] => {
     const list = Array.from(ymap._map).map((item: any) => {
       const [createTime, doc] = item
       if (doc.content?.arr) {
@@ -76,10 +76,42 @@ const useTask = (): UseTask => {
   // 日期选择
   const getSetSelectDayTaskList = (daystr: string) => setAll(getCurrentDayTaskList(getIndexddbDataList(), daystr))
 
-  // 统计
-  
+  const filterTaskType = (type: 'Urgent' | 'Important' | 'Todo' | 'completionRate') => {
+    const taskList = getIndexddbDataList()
+    const filterListFunc = (keyType: 'level' | 'Todo' | 'completionRate') => {
+      if (keyType !== 'completionRate') {
+        return taskList.filter(item => {
+          const [timer, obj] = item
+          if (keyType === 'level') {
+            return obj[keyType] === type && obj.processStatus !== 'Completed'
+          }
+
+          if (keyType === 'Todo') {
+            return obj.processStatus !== 'Completed'
+          }
+        }).length
+      }
+
+      const completedTaskListLen = taskList.filter(item => {
+        const [timer, obj] = item
+        return obj.processStatus === 'Completed'
+      }).length
+
+      return (completedTaskListLen / taskList.length) * 100
+    }
+
+    const comparer = {
+      'Urgent': filterListFunc('level'),
+      'Important': filterListFunc('level'),
+      'Todo': filterListFunc('Todo'),
+      'completionRate': filterListFunc('completionRate')
+    }
+    
+    return comparer[type]
+  }
 
   return {
+    filterTaskType,
     getIndexddbDataList,
     getSetSelectDayTaskList,
     removeTaskItem,

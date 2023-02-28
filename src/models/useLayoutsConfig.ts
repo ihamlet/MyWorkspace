@@ -23,8 +23,10 @@ const useConfig = (): UseConfig => {
     if (newTime >= '1820') {
       setThemeConfig({ algorithm: [darkAlgorithm], token })
       bodyDom?.setAttribute('theme', 'drak')
+      setTheme(false)
     } else {
       bodyDom?.setAttribute('theme', 'default')
+      setTheme(true)
     }
   }, [newTime])
 

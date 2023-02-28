@@ -33,6 +33,7 @@ type Task = {
 }
 
 type UseTask = {
+  filterTaskType: Function
   getIndexddbDataList: Function
   getSetSelectDayTaskList: Function
   removeTaskItem: Function

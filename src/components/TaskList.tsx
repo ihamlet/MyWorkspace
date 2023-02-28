@@ -3,6 +3,7 @@ import { Row, Col, Button, List, Segmented, Space, Card, Tag, Checkbox } from 'a
 import { PlusOutlined, DeleteOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import { useModel } from 'umi'
 import { Task, TaskState, ProcessStatus, ProcessStatusType } from '@/models/models.types'
+import StatisticsTask from '@/components/StatisticsTask'
 
 const TaskList = () => {
   const { taskList, setModelOpen, setTaskState, removeTaskItem } = useModel<any>('useCreateTaskModelOpen')
@@ -16,7 +17,6 @@ const TaskList = () => {
 
   const [list, setList] = useState(groupList(''))
   useEffect(() => setList(groupList('')), [taskList])
-
   const [checkedState, setCheckedState] = useState('')
 
   const onProcessStatusChange = (e: any, item: any) => {
@@ -59,41 +59,42 @@ const TaskList = () => {
   }
 
   return (
-    <Card>
-    <Row>
+    <Row gutter={[16, 16]}>
       <Col span={24}>
-        <Space size={16}>
-          <Button type="primary" icon={<PlusOutlined />} onClick={() => setModelOpen(true)}>创建任务</Button>
+        <StatisticsTask />
+      </Col>
+      <Col span={24}>
+        <Card>
+          <Space size={16}>
+            <Button type="primary" icon={<PlusOutlined />} onClick={() => setModelOpen(true)}>创建任务</Button>
             <Segmented options={ProcessStatus} onChange={(value) => onSegmentedChange(value as '')} />
-        </Space>
+          </Space>
+          <List
+            dataSource={list}
+            renderItem={(item:any) => {
+            const [createDate, task] = item
+            const [taskState] = TaskState.filter(e => task.level === e.value)
+              return (
+                <List.Item key={createDate + checkedState}>
+                  <List.Item.Meta
+                    title={
+                      <Space>
+                        {task.title}
+                        <Tag color={taskState.color}>{taskState.label}</Tag>
+                      </Space>
+                    }
+                    description={task.description}
+                  />
+                  <Space>
+                    { CheckboxDom(task, item) }
+                    {!checkedState && <Button type={'text'} size={'small'} danger icon={<DeleteOutlined />} onClick={() => removeTaskItem(createDate)}>删除</Button>}
+                  </Space>
+                </List.Item>
+              )
+            }} />
+          </Card>
       </Col>
-      <Col span={24}>
-        <List
-          dataSource={list}
-          renderItem={(item:any) => {
-          const [createDate, task] = item
-          const [taskState] = TaskState.filter(e => task.level === e.value)
-            return (
-              <List.Item key={createDate + checkedState}>
-                <List.Item.Meta
-                  title={
-                    <Space>
-                      {task.title}
-                      <Tag color={taskState.color}>{taskState.label}</Tag>
-                    </Space>
-                  }
-                  description={task.description}
-                />
-                <Space>
-                  { CheckboxDom(task, item) }
-                  {!checkedState && <Button type={'text'} size={'small'} danger icon={<DeleteOutlined />} onClick={() => removeTaskItem(createDate)}>删除</Button>}
-                </Space>
-              </List.Item>
-            )
-          }} />
-      </Col>
-      </Row>
-    </Card>
+    </Row>
   )
 }
 

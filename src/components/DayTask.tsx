@@ -8,10 +8,9 @@ const { Text } = Typography
 const DayTask = () => {
   const { taskList, setModelOpen, getSetSelectDayTaskList, getIndexddbDataList } = useModel<any>('useCreateTaskModelOpen')
   const groupList = (level:LevelType): any[] => {
-    const list: any = Array.from(taskList).filter((item: any) => {
+    const list:any[] = Array.from(taskList).filter((item: any) => {
       const [key, value] = item
-      return value.level === level 
-      && (value.processStatus === 'Processing' || value.processStatus === 'Completed')
+      return value.level === level && (value.processStatus === 'Processing' || value.processStatus === 'Completed')
     })
     return list
   }
