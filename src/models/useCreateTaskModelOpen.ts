@@ -97,7 +97,7 @@ const useTask = (): UseTask => {
         return obj.processStatus === 'Completed'
       }).length
 
-      return (completedTaskListLen / taskList.length) * 100
+      return ((completedTaskListLen / taskList.length) * 100).toFixed(2)
     }
 
     const comparer = {
