@@ -6,7 +6,7 @@ import CreateTask from '@/components/CreateTask'
 const { Header, Content, Footer } = Layout
 
 const Layouts = () => {
-  const { isOpen, setModelOpen, confirm } = useModel<any>('useCreateTaskModelOpen') as any
+  const { isOpen, setModelOpen, confirm } = useModel<any>('useTask') as any
   const { themeConfig, zhCN } = useModel<any>('useLayoutsConfig') as any
 
   return (

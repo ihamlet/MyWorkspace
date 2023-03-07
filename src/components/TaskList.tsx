@@ -6,7 +6,7 @@ import { Task, TaskState, ProcessStatus, ProcessStatusType } from '@/models/mode
 import StatisticsTask from '@/components/StatisticsTask'
 
 const TaskList = () => {
-  const { taskList, setModelOpen, setTaskState, removeTaskItem } = useModel<any>('useCreateTaskModelOpen')
+  const { taskList, setModelOpen, setTaskState, removeTaskItem } = useModel<any>('useTask')
   const groupList = (processStatus:ProcessStatusType): any[] => {
     const list: any = Array.from(taskList).filter((item: any) => {
       const [key, value] = item

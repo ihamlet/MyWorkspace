@@ -3,7 +3,7 @@ import { Card, Col, Row, Statistic } from 'antd'
 import { useModel } from 'umi'
 
 const StatisticsTask = () => {
-  const { filterTaskType } = useModel<any>('useCreateTaskModelOpen')
+  const { filterTaskType } = useModel<any>('useTask')
   return (
     <Row gutter={[16, 16]}>
       <Col xs={12} sm={12} md={12} lg={6} xl={6}>

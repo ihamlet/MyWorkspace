@@ -6,7 +6,7 @@ import { TaskState, LevelType } from '@/models/models.types'
 const { Text } = Typography
 
 const DayTask = () => {
-  const { taskList, setModelOpen, getSetSelectDayTaskList, getIndexddbDataList } = useModel<any>('useCreateTaskModelOpen')
+  const { taskList, setModelOpen, getSetSelectDayTaskList, getIndexddbDataList } = useModel<any>('useTask')
   const groupList = (level:LevelType): any[] => {
     const list:any[] = Array.from(taskList).filter((item: any) => {
       const [key, value] = item

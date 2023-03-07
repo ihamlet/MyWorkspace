@@ -13,7 +13,7 @@ const CreateTask = () => {
   })
   
   const [form] = Form.useForm()
-  const { setCreateForm } = useModel<any>('useCreateTaskModelOpen')
+  const { setCreateForm } = useModel<any>('useTask')
   useEffect(() => setCreateForm(form), [])
 
   return (
