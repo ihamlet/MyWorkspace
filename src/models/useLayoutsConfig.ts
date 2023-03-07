@@ -14,7 +14,7 @@ const useConfig = (): UseConfig => {
   const [isDarkTheme, setTheme] = useState<Boolean>(false)
 
   const token = { colorPrimary: '#2F54EB' }
-  const [ themeConfig, setThemeConfig ] = useSetState({
+  const [ themeConfig, setThemeConfig] = useSetState({
     algorithm: [defaultAlgorithm],
     token
   })

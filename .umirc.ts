@@ -5,11 +5,12 @@ export default defineConfig({
     '@umijs/plugins/dist/model',
     '@umijs/plugins/dist/antd'
   ],
-  base: '/MyWorkspace',
+  // base: '/MyWorkspace',
   model: {},
   antd: {},
   routes: [
-    { path: "/", component: "index" }
+    { path: "/", component: "index" },
+    { path: "/MyWorkflow", component: "workflow" }
   ],
   npmClient: 'pnpm'
 })
